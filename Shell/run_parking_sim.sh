@@ -14,10 +14,10 @@ set_ws(){
 set_tmux(){
     # Set tmux for further using
     tmux kill-server
-    session_name="Static"
+    session_name="Parking"
     windows_names=("Main node" "Gazebo" "Model launcher")
     commands=("roscore" 
-              "rosrun gazebo_ros gazebo src/skoda_simulation/src/ackermannsteer/steerbot/world/world.world"
+              "rosrun gazebo_ros gazebo src/skoda_simulation/src/rob_world/world/parking.world"
               "roslaunch steerbot world.launch")
 
     # Set the windows
@@ -33,7 +33,7 @@ set_tmux(){
     for i in {0..2}
     do  
         tmux send-keys -t $session_name:"${windows_names[i]}" "${commands[i]}" C-m
-        sleep 0.5s
+        sleep 1s
     done
     # Go to Gazebo window
     tmux ls
@@ -49,4 +49,3 @@ set_tmux
 
 
 exec bash
-
