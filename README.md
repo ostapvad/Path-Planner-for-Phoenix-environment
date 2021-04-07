@@ -1,15 +1,17 @@
 # Path-Planner-for-Phoenix-environment
 ## 1) Installation: 
 1. Clone the master branch of the current repository, for SSH:\
-		`git clone git@github.com:ostapvad/Path-Planner-for-Phoenix-environment.git` 
+	`git clone git@github.com:ostapvad/Path-Planner-for-Phoenix-environment.git` 
 2. Create ROS workspace, choose any location and folder name(for example Gazebo_ws), then\
 	`mkdir Gazebo_ws && mkdir Gazebo_ws`\
 	`cd Gazebo_ws && catkin_make` 
 3. Copy the folder consisting a Gazebo path plugin into your created workspace\
-	 `cd PathPlanner`\
+	 `cd Path-Planner-for-Phoenix-environment-master`\
 	 `cp -a gazebo_path_plugin/ PathToYourWorkspace/Gazebo_ws/src`
-
-5.  
+## 2)Set pathes
+1. Go to your home folder and update .bashrc file, you have two options:
+	* Manual: 
+	* Using terminal
 6) Copy the folder gazebo_path_plugin to your workspace/src and catkin_make.
 7) Update your .bashrc file, paste at the end, change the path to your workspace.
 	source /home/ostapvad/Documents/Gazebo_ws/devel/setup.bash # Path to your workspace
