@@ -45,7 +45,7 @@ int main(int argc, char **argv){
         srv.request.initial_pose.position.y = py.data;
         //ROS_INFO("5s", srv.request);
         if(client.call(srv)){ 
-            ROS_INFO("Spawned model: %s", srv.response.status_message);
+            ROS_INFO("Spawned model: %s", srv.response.status_message.c_str());
         }
         else {
             ROS_ERROR("Failed to call service");
