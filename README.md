@@ -18,8 +18,8 @@
 	* after\
 	  `source PathWhereROSisInstalled\distribution\setup.bash`
 	* change the path to your workspace, where you cloned the plugin(Gazebo_ws in our case)\
-	`source /SomePath/Gazebo_ws/devel/setup.bash # Path to your workspace`
-	`export GAZEBO_PLUGIN_PATH=/SomePathGazebo_ws/devel/lib/ # Path to the same workspace for Gazebo plugins`
+	`source /SomePath/Gazebo_ws/devel/setup.bash # Path to your workspace`\
+	`export GAZEBO_PLUGIN_PATH=/SomePathGazebo_ws/devel/lib/ # Path to the same workspace for Gazebo plugins`\
 	`export GAZEBO_MODEL_PATH=/SomePath/Gazebo_ws/src/gazebo_path_plugin/models:$GAZEBO_MODEL_PATH # Path to models for GAZEBO`
 	
 4. I personally recomend also set  
