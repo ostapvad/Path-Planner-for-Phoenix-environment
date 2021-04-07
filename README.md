@@ -1,9 +1,10 @@
 # Path-Planner-for-Phoenix-environment
-## 1) Installation 
-
-1) Clone the repository.
-2) Copy the folder gazebo_path_plugin to your workspace/src and catkin_make.
-3) Update your .bashrc file, paste at the end, change the path to your workspace.
+## 1) Installation: 
+1. Clone the master branch of the current repository.
+2. 
+3) Clone the repository.
+4) Copy the folder gazebo_path_plugin to your workspace/src and catkin_make.
+5) Update your .bashrc file, paste at the end, change the path to your workspace.
 	source /home/ostapvad/Documents/Gazebo_ws/devel/setup.bash # Path to your workspace
 	export GAZEBO_PLUGIN_PATH=~/Documents/Gazebo_ws/devel/lib/ # Path to the same workspace for Gazebo plugins
 	export GAZEBO_MODEL_PATH=/home/ostapvad/Documents/Gazebo_ws/src/gazebo_path_plugin/models:$GAZEBO_MODEL_PATH
