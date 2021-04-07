@@ -27,6 +27,7 @@
 	`echo $GAZEBO_MODEL_PATH`
 ## 3) Complilation
 ## 4) Running
+In the every new terminal put the command into the following order
 	`roscore`\
 	`rosrun gazebo_ros gazebo -u`\
 	`rosrun gazebo_path_plugin builde`r
