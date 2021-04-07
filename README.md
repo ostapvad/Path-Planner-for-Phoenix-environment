@@ -1,7 +1,7 @@
 # Path-Planner-for-Phoenix-environment
 ## 1) Installation: 
-1. Clone the master branch of the current repository, for SSH:
-	*`git clone git@github.com:ostapvad/Path-Planner-for-Phoenix-environment.git` 
+1. Clone the master branch of the current repository, for SSH:\
+	`git clone git@github.com:ostapvad/Path-Planner-for-Phoenix-environment.git` 
  
 4) Clone the repository.
 5) Copy the folder gazebo_path_plugin to your workspace/src and catkin_make.
