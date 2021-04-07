@@ -22,10 +22,9 @@
 	`export GAZEBO_PLUGIN_PATH=/SomePathGazebo_ws/devel/lib/ # Path to the same workspace for Gazebo plugins`\
 	`export GAZEBO_MODEL_PATH=/SomePath/Gazebo_ws/src/gazebo_path_plugin/models:$GAZEBO_MODEL_PATH # Path to models for Gazebo simulator`	
 3. I personally recommend to put the following commands after inserted in the previous part to see the pathes in a new terminal\
- 	`source /SomePath/Gazebo_ws/devel/setup.bash # Path to your workspace`\
-	`export GAZEBO_PLUGIN_PATH=/SomePathGazebo_ws/devel/lib/ # Path to the same workspace for Gazebo plugins`\
-	`export GAZEBO_MODEL_PATH=/SomePath/Gazebo_ws/src/gazebo_path_plugin/models:$GAZEBO_MODEL_PATH # Path to models for Gazebo simulator`	
-  
+ 	`echo $ROS_PACKAGE_PATH`\
+	`echo $GAZEBO_PLUGIN_PATH`\
+	`echo $GAZEBO_MODEL_PATH`
 6) Copy the folder gazebo_path_plugin to your workspace/src and catkin_make.
 7) Update your .bashrc file, paste at the end, change the path to your workspace.
 	ATH
