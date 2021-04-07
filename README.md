@@ -12,7 +12,7 @@ How to run the plugin
 5) run with ./run_mypark.sh(for tmux users). Otherwise go to your worspace and run in separate terminal the commands:
 	roscore
 	rosrun gazebo_ros gazebo -u
-	rosrun gazebo_ros gazebo -u
+	rosrun gazebo_path_plugin builder
 
 6)Other Shell files were written for parking branch in Veronika's repository, you can clone the required repositeries and install this branch with ./init_sim_ws, don't forget to change 
 	# Change to whereever you want
