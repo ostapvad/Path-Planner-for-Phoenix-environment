@@ -48,12 +48,8 @@ int main(int argc, char **argv){
         srv.request.initial_pose.position.y = py.data;
 
         if(client.call(srv)){ 
-<<<<<<< HEAD
             //std::cout<<srv.response.status_message<<" " << tmp_model_name <<std::endl;
             ROS_INFO("Response: %s, Model name: %s\n", srv.response.status_message.c_str(), tmp_model_name.c_str());
-=======
-            ROS_INFO("Spawned model: %s", srv.response.status_message.c_str());
->>>>>>> cdff35011e38f0d1c01461bac2c0fdb48f2fb878
         }
         else {
             ROS_ERROR("Failed to call service");
