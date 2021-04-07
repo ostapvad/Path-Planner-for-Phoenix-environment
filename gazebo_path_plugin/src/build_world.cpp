@@ -24,33 +24,38 @@ int main(int argc, char **argv){
     }
     ros::NodeHandle n;
 
-    ros::ServiceClient client = n.serviceClient<gazebo_msgs::SpawnModel>("builder");
+    ros::ServiceClient client = n.serviceClient<gazebo_msgs::SpawnModel>("/gazebo/spawn_sdf_model");
     gazebo_msgs::SpawnModel srv;
     std::string model_name = "parking_slot";
-   
-    //std::string num_str1(std::to_string(1.25));
-    //num_str1.append("chuj");
+
     
     std::string xml_data = readFileIntoString2(path_to_file);
   
     std_msgs::Float64 px, py;
+   
+   
+    std::string tmp_model_name;
     for (int i = 0; i < N; i++){
+        tmp_model_name = model_name;
+        tmp_model_name.append(std::to_string(i));
         px.data = w_s/2 + w_p*(N- i + 0.5);
         py.data = w_s/2 + l_p/2;
-        //srv.request.model_name = "";
+        srv.request.model_name = tmp_model_name;
         srv.request.model_xml = xml_data;
-        srv.request.robot_namespace = "-file";
-        //srv.request.reference_frame = "";
+        //srv.request.robot_namespace = "-file";
+        //srv.request.reference_frame = "parking_slot1";
         srv.request.initial_pose.position.x = px.data;
         srv.request.initial_pose.position.y = py.data;
-        //ROS_INFO("5s", srv.request);
+
         if(client.call(srv)){ 
-            ROS_INFO("Spawned model: %s", srv.response.status_message);
+            //std::cout<<srv.response.status_message<<" " << tmp_model_name <<std::endl;
+            ROS_INFO("Response: %s, Model name: %s\n", srv.response.status_message.c_str(), tmp_model_name.c_str());
         }
         else {
             ROS_ERROR("Failed to call service");
             return 1;
         }
+        
     }
     
     return 0;
