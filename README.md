@@ -3,9 +3,10 @@
 1. Clone the master branch of the current repository, for SSH:\
 	`git clone git@github.com:ostapvad/Path-Planner-for-Phoenix-environment.git` 
 2. Create ROS workspace, choose any location and folder name(for example Gazebo_ws), then\
+	<p align="center">
 	`mkdir Gazebo_ws && mkdir Gazebo_ws`\
 	`cd Gazebo_ws && catkin_make`
- 
+ 	</p>
 3.
 4. Copy the folder consisting a Gazebo path plugin into your 
 5) Copy the folder gazebo_path_plugin to your workspace/src and catkin_make.
