@@ -1,5 +1,5 @@
 # Path-Planner-for-Phoenix-environment
-How to run the plugin
+## 1) Installation 
 
 1) Clone the repository.
 2) Copy the folder gazebo_path_plugin to your workspace/src and catkin_make.
