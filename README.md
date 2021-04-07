@@ -14,7 +14,7 @@
 	`ctrl+h` and  open this file
 	* Using terminal:
 	`gedit .bashrc`
-2. Insert the following commands in the end of your .bashrc file, after \
+2. Insert the following commands in the end of your .bashrc file, after
 	*`source PathWhereROSisInstalled\distribution\setup.bash`\
 	* put\
 	`source /home/ostapvad/Documents/Gazebo_ws/devel/setup.bash # Path to your workspace`
