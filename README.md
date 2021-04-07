@@ -4,11 +4,14 @@
 		`git clone git@github.com:ostapvad/Path-Planner-for-Phoenix-environment.git` 
 2. Create ROS workspace, choose any location and folder name(for example Gazebo_ws), then\
 	`mkdir Gazebo_ws && mkdir Gazebo_ws`\
-	`cd Gazebo_ws && catkin_make`
-3.
-4. Copy the folder consisting a Gazebo path plugin into your 
-5) Copy the folder gazebo_path_plugin to your workspace/src and catkin_make.
-6) Update your .bashrc file, paste at the end, change the path to your workspace.
+	`cd Gazebo_ws && catkin_make` 
+3. Copy the folder consisting a Gazebo path plugin into your created workspace\
+	 `cd PathPlanner`\
+	 `cp -a gazebo_path_plugin/ PathToYourWorkspace/Gazebo_ws/src`
+
+5.  
+6) Copy the folder gazebo_path_plugin to your workspace/src and catkin_make.
+7) Update your .bashrc file, paste at the end, change the path to your workspace.
 	source /home/ostapvad/Documents/Gazebo_ws/devel/setup.bash # Path to your workspace
 	export GAZEBO_PLUGIN_PATH=~/Documents/Gazebo_ws/devel/lib/ # Path to the same workspace for Gazebo plugins
 	export GAZEBO_MODEL_PATH=/home/ostapvad/Documents/Gazebo_ws/src/gazebo_path_plugin/models:$GAZEBO_MODEL_PATH
