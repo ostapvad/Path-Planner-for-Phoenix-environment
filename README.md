@@ -8,10 +8,12 @@
 3. Copy the folder consisting a Gazebo path plugin into your created workspace\
 	 `cd Path-Planner-for-Phoenix-environment-master`\
 	 `cp -a gazebo_path_plugin/ PathToYourWorkspace/Gazebo_ws/src`
-## 2)Set pathes
-1. Go to your home folder and update .bashrc file, you have two options:
-	* Manual: 
-	* Using terminal
+## 2) Set pathes
+1. Go to your home folder and update .bashrc file, you've two options:
+	* Manual: show all hidden files with the command\
+	`ctrl+h` - open this file
+	* Using terminal:
+	`gedit .bashrc`
 6) Copy the folder gazebo_path_plugin to your workspace/src and catkin_make.
 7) Update your .bashrc file, paste at the end, change the path to your workspace.
 	source /home/ostapvad/Documents/Gazebo_ws/devel/setup.bash # Path to your workspace
