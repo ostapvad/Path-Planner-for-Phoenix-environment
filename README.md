@@ -15,14 +15,16 @@
 	* Using terminal:
 	`gedit .bashrc`
 2. Insert the following commands in the end of your .bashrc file, after \
-	`source PathWhereROSisInstalled\distribution\setup.bash`\
-	put
+	*`source PathWhereROSisInstalled\distribution\setup.bash`\
+	* put\
+	`source /home/ostapvad/Documents/Gazebo_ws/devel/setup.bash # Path to your workspace`
+	`export GAZEBO_PLUGIN_PATH=~/Documents/Gazebo_ws/devel/lib/ # Path to the same workspace for Gazebo plugins`
+	`export GAZEBO_MODEL_PATH=/home/ostapvad/Documents/Gazebo_ws/src/gazebo_path_plugin/models:$GAZEBO_MODEL_PATH`
+	
 4. I personally recomend also set  
 6) Copy the folder gazebo_path_plugin to your workspace/src and catkin_make.
 7) Update your .bashrc file, paste at the end, change the path to your workspace.
-	source /home/ostapvad/Documents/Gazebo_ws/devel/setup.bash # Path to your workspace
-	export GAZEBO_PLUGIN_PATH=~/Documents/Gazebo_ws/devel/lib/ # Path to the same workspace for Gazebo plugins
-	export GAZEBO_MODEL_PATH=/home/ostapvad/Documents/Gazebo_ws/src/gazebo_path_plugin/models:$GAZEBO_MODEL_PATH
+	ATH
 4) cd to Shell/, update the line in run_mypark.sh to your workspace
  	ws_path="/home/ostapvad/Documents/Gazebo_ws" # path to ROS workpace CHANGE TO YOUR CUSTOM
 5) run with ./run_mypark.sh(for tmux users). Otherwise go to your worspace and run in separate terminal the commands:
