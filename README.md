@@ -27,8 +27,8 @@
 	`echo $GAZEBO_MODEL_PATH`
 ## 3) Complilation
 ## 4) Running
-In the every new terminal put the command into the following order
-	`roscore`\
-	`rosrun gazebo_ros gazebo -u`\
-	`rosrun gazebo_path_plugin builde`r
+In the every new terminal put the command into the following order\
+	`roscore` - to run ROS main node\
+	`rosrun gazebo_ros gazebo -u`- to start Gazebo simulation node in pause mode\
+	`rosrun gazebo_path_plugin builder` - to build you world 
 ## 5) Shell files
