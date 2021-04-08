@@ -25,10 +25,12 @@
  	`echo $ROS_PACKAGE_PATH`\
 	`echo $GAZEBO_PLUGIN_PATH`\
 	`echo $GAZEBO_MODEL_PATH`
-## 3) Complilation
+## 3) Compilation:
+	* update the path to models in spawn_world.cpp and build_world.cpp
+	*`path_to_file = "PathToWorkspacesrc/gazebo_path_plugin/models/parking_slot/model.sdf";` 
 ## 4) Running
 In the every new terminal put the command into the following order\
 	`roscore` - to run ROS main node\
 	`rosrun gazebo_ros gazebo -u`- to start Gazebo simulation node in pause mode\
-	`rosrun gazebo_path_plugin builder` - to build you world 
+	`rosrun gazebo_path_plugin builder` - to build the  
 ## 5) Shell files
