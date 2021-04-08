@@ -20,6 +20,7 @@
             </surface>
          </collision>
          <visual name="visual">
+            <pose frame=''>0 0 0 0 -0 0</pose>
             <cast_shadows>false</cast_shadows>
             <geometry>
                <plane>
@@ -31,7 +32,58 @@
                <script>
                   <uri>model://parking_slot/materials/scripts</uri>
                   <uri>model://parking_slot/materials/textures/</uri>
-                  <name>MyGroundPlane/Image</name>
+                  <name>AsphaltPlane/Image</name>
+               </script>
+            </material>
+         </visual>
+         <visual name="visual1">
+            <pose frame=''>0 1.2 0.001 0 -0 0</pose>
+            <cast_shadows>false</cast_shadows>
+            <geometry>
+               <plane>
+                  <normal>0 0 1</normal>
+                  <size>5.5 0.1</size>
+               </plane>
+            </geometry>
+            <material>
+               <script>
+                  <uri>model://parking_slot/materials/scripts</uri>
+                  <uri>model://parking_slot/materials/textures/</uri>
+                  <name>Border/Image</name>
+               </script>
+            </material>
+         </visual>
+         <visual name="visual2">
+            <pose frame=''>0 -1.2 0.001 0 -0 0</pose>
+            <cast_shadows>false</cast_shadows>
+            <geometry>
+               <plane>
+                  <normal>0 0 1</normal>
+                  <size>5.5 0.1</size>
+               </plane>
+            </geometry>
+            <material>
+               <script>
+                  <uri>model://parking_slot/materials/scripts</uri>
+                  <uri>model://parking_slot/materials/textures/</uri>
+                  <name>Border/Image</name>
+               </script>
+            </material>
+         </visual>
+         <visual name="visual3">
+            <pose frame=''>2.7 0 0.001 0 -0 0</pose>
+            <cast_shadows>false</cast_shadows>
+            <geometry>
+               <plane>
+                  <normal>0 0 1</normal>
+                  <size>0.1 2.5</size>
+               </plane>
+            </geometry>
+            <material>
+               <script>
+                  <uri>model://parking_slot/materials/scripts</uri>
+                  <uri>model://parking_slot/materials/textures/</uri>
+                  <name>Border/Image</name>
                </script>
             </material>
          </visual>

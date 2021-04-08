@@ -9,7 +9,7 @@ int w_s = 4;    //[m] - width of moving path for the steerbot
 int w_p = 2.5;  //[m] - width of parking slot
 int l_p = 5.5;  //[m] - length of parking slot
 int N = 10;     //[m] - number of parking slots in one row
-std::string path_to_file = "/home/ostapvad/Documents/Gazebo_ws/src/gazebo_path_plugin/models/parking_slot/model.sdf"; // path to model
+std::string path_to_file = "/home/ostapvad/Documents/Gazebo_ws/src/gazebo_path_plugin/models/slot/model.sdf"; // path to model
 
 std::string readFileIntoString2(const std::string & path); // reads file into string
 //void spawn_pslots();
