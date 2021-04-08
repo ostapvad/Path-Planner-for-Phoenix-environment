@@ -208,6 +208,6 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(builder /home/ostapvad/Documents/Gazebo_ws/src/gazebo_path_plugin/src/build_world.cpp)
+add_executable(builder src/build_world.cpp)
 target_link_libraries(builder ${catkin_LIBRARIES})
 add_dependencies(builder gazebo_path_plugin_generate_messages_cpp)
