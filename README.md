@@ -32,8 +32,12 @@ Update the path to models in spawn_world.cpp
 In the every new terminal put the command into the following order\
 	`roscore` - to run ROS main node\
 	`rosrun gazebo_ros gazebo -u`- to start Gazebo simulation node in pause mode\
-	 a)To spawn an object \
+	 a)To spawn the parking slots in a row \
 	`rosrun gazebo_path_plugin builder` \
 	 b)To build the parking box\
 	`rosrun gazebo_path_plugin world_spawner` 
 ## 5) Shell files
+## 6) Current results
+*builder node
+![parking_slots](https://user-images.githubusercontent.com/49625282/114096627-45134b80-98bf-11eb-95b6-0d0e2625b7cf.jpg)
+
