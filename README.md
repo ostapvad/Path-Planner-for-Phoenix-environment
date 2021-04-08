@@ -33,7 +33,7 @@ In the every new terminal put the command into the following order\
 	`roscore` - to run ROS main node\
 	`rosrun gazebo_ros gazebo -u`- to start Gazebo simulation node in pause mode\
 	 a)To spawn an object \
-	`rosrun gazebo_path_plugin world_spawner` \
+	`rosrun gazebo_path_plugin builder` \
 	 b)To build the parking box\
 	`rosrun gazebo_path_plugin world_spawner` 
 ## 5) Shell files
