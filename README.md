@@ -37,7 +37,7 @@ In the every new terminal put the command into the following order\
 	 b)To build the parking box\
 	`rosrun gazebo_path_plugin world_spawner` 
 ## 5) Shell files
-## 6) Current results:\
+## 6) Current results:
 * *builder* node
 ![parking_slots](https://user-images.githubusercontent.com/49625282/114096627-45134b80-98bf-11eb-95b6-0d0e2625b7cf.jpg)
 * *world_spawner* node 
