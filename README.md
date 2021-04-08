@@ -40,4 +40,7 @@ In the every new terminal put the command into the following order\
 ## 6) Current results:\
 * *builder* node
 ![parking_slots](https://user-images.githubusercontent.com/49625282/114096627-45134b80-98bf-11eb-95b6-0d0e2625b7cf.jpg)
-* *world_spawner* node
+* *world_spawner* node 
+![parking_box](https://user-images.githubusercontent.com/49625282/114097102-e1d5e900-98bf-11eb-9f66-143117fef583.jpg)
+
+
