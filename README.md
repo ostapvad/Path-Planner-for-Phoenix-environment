@@ -26,7 +26,7 @@
 	`echo $GAZEBO_PLUGIN_PATH`\
 	`echo $GAZEBO_MODEL_PATH`
 ## 3) Compilation:
-Update the path to models in spawn_world.cpp\
+Update the path to models in spawn_world.cpp and build_world.cpp\
 	`path_to_file = "PathToWorkspacesrc/gazebo_path_plugin/models/parking_slot/model.sdf";` 
 ## 4) Running
 In the every new terminal put the command into the following order\
