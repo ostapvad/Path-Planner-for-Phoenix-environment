@@ -43,7 +43,7 @@ with the path to your wokspace, something like this\
 ## 5) Parameters:
 1. All the parameters have the prefix **/world_spawner**. You can read about the parameters meaning in the paper description.pdf.
 2. You can set the required parameter with `rosparam set /world_spawner/parameter_name` or load from .yaml file. The example of the .yaml file for world spawner client is given in **/gazebo_path_plugin/config/world.yaml**. Please, get acquainted with it.
-3. After setting your parameters, you have to run the world spawner again and the parameters will be updated to yours. **Attention.**Also the client runs by the way that first deletes all spawned models, takes the parameters and spawns new world. Deleting all the models can take some amount of time, so I recommend you to abort `rosrun gazebo_ros gazebo -u` and run it again and then run world spawner client. It will delete only the single ground plane which want take much time.
+3. After setting your parameters, you have to run the world spawner again and the parameters will be updated to yours. **Attention!**. Also the client runs by the way that first deletes all spawned models, takes the parameters and spawns new world. Deleting all the models can take some amount of time, so I recommend you to abort `rosrun gazebo_ros gazebo -u` and run it again and then run world spawner client. It will delete only the single ground plane which want take much time.
 ## 6) Current results:
 * *builder* node
 ![parking_slots](https://user-images.githubusercontent.com/49625282/114096627-45134b80-98bf-11eb-95b6-0d0e2625b7cf.jpg)
