@@ -45,6 +45,8 @@ with the path to your wokspace, something like this\
 2. You can set the required parameter with `rosparam set /world_spawner/parameter_name` or load from .yaml file. The example of the .yaml file for world spawner client is given in **/gazebo_path_plugin/config/world.yaml**. Please, get acquainted with it.
 3. After setting your parameters, you have to run the world spawner again and the parameters will be updated to yours. **Attention!** Also the client runs so that  firstly deletes all spawned models before, then takes the given parameters and spawns new world. Deleting all the models can take some amount of time, so I recommend you to abort `rosrun gazebo_ros gazebo -u` and run it again and then run world spawner client. It will delete only the single ground plane which want take much time.
 ## 6) Current results:
-![parking_box](https://user-images.githubusercontent.com/49625282/114097102-e1d5e900-98bf-11eb-9f66-143117fef583.jpg)
+Blok C with 10 rows in the each parking box, cars were spawned randomly on the parking slots
+![default_gzclient_camera(1)-2021-04-14T20_50_12 611681](https://user-images.githubusercontent.com/49625282/114766896-42a16d80-9d67-11eb-83bd-d9ad24a2b903.jpg)
+
 
 
