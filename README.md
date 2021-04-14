@@ -34,12 +34,12 @@ with the path to your wokspace, something like this\
 	`std::string path_prefix =  "/YourPath/YourWorkspace/src/gazebo_path_plugin/models/";`
 3. Now go back to the root of your workspace and `catkin_make` the package
 ## 4) Running
-In the every new terminal put the command into the following order\
+1) In the every new terminal put the command into the following order\
 	`roscore` - to run ROS main node\
 	`rosrun gazebo_ros gazebo -u`- to start Gazebo simulation node in pause mode\
-In your third terminal you can get the list of all avaliable services and you should see some with prefix `/gazebo/`. Then run the world spawner client with the default parameters: 
+2) In your third terminal you can get the list of all avaliable services and you should see some with prefix `/gazebo/`. Then run the world spawner client with the default parameters: 
 	`rosrun gazebo_path_plugin world_spawner`\
-Now you can change your world or save. **Attention!**
+3) Now you can change your world or save. **Attention!** All the changes you do with your world manually won't be monitored by the world spawner, it only helps you to spawn the specific type of the world.
 ## 5) Parameters:
 1. All the parameters have the prefix **/world_spawner**. You can read about the parameters meaning in the paper description.pdf.
 2. You can set the required parameter with `rosparam set /world_spawner/parameter_name` or load from .yaml file. The example of the .yaml file for world spawner client is given in **/gazebo_path_plugin/config/world.yaml**. Please, get acquainted with it.
