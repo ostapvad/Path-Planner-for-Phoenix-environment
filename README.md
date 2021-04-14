@@ -32,16 +32,13 @@
 	`std::string path_prefix =  "/home/ostapvad/Documents/Gazebo_ws/src/gazebo_path_plugin/models/";`\
 with the path to your wokspace, something like this\
 	`std::string path_prefix =  "/YourPath/YourWorkspace/src/gazebo_path_plugin/models/";`
-3. Now go back to the root of your workspace and catkin_make the package
+3. Now go back to the root of your workspace and `catkin_make` the package
 ## 4) Running
 In the every new terminal put the command into the following order\
 	`roscore` - to run ROS main node\
 	`rosrun gazebo_ros gazebo -u`- to start Gazebo simulation node in pause mode\
-	 a)To spawn the parking slots in a row \
-	`rosrun gazebo_path_plugin builder` \
-	 b)To build the parking box\
-	`rosrun gazebo_path_plugin world_spawner` 
-## 5) Shell files
+	`rosrun gazebo_path_plugin world_spawner` - to run the world spawner client with the default parameters
+## 5) Parameters:
 ## 6) Current results:
 * *builder* node
 ![parking_slots](https://user-images.githubusercontent.com/49625282/114096627-45134b80-98bf-11eb-95b6-0d0e2625b7cf.jpg)
