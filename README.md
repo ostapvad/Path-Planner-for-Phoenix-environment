@@ -41,7 +41,7 @@ with the path to your wokspace, something like this\
 	`rosrun gazebo_path_plugin world_spawner`\
 3) Now you can change your world or save. **Attention!** All the changes you do with your world manually won't be monitored by the world spawner, it only helps you to spawn the specific type of the world.
 ## 5) Parameters:
-1. All the parameters have the prefix **/world_spawner**. You can read about the parameters meaning in the paper [a relative link](Spawner_Discription.pdf).
+1. All the parameters have the prefix **/world_spawner**. You can read about the parameters meaning in the [description](Spawner_Discription.pdf).
 2. You can set the required parameter with `rosparam set /world_spawner/parameter_name` or load from .yaml file. The example of the .yaml file for world spawner client is given in **/gazebo_path_plugin/config/world.yaml**. Please, get acquainted with it.
 3. After setting your parameters, you have to run the world spawner again and the parameters will be updated to yours. **Attention!** Also the client runs so that  firstly deletes all spawned models before, then takes the given parameters and spawns new world. Deleting all the models can take some amount of time, so I recommend you to abort `rosrun gazebo_ros gazebo -u` and run it again and then run world spawner client. It will delete only the single ground plane which want take much time.
 ## 6) Current results:
