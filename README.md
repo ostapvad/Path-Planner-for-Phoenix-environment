@@ -40,7 +40,8 @@ with the path to your wokspace, something like this\
 2) In your third terminal you can get the list of all avaliable services and you should see some with prefix `/gazebo/`. Then run the world spawner client with the default parameters: 
 	`rosrun gazebo_path_plugin world_spawner`\
 3) Now you can change your world or save. **Attention!** All the changes you do with your world manually won't be monitored by the world spawner, it only helps you to spawn the specific type of the world.
-4) Also if you have steerbot package of, you can launch it with 
+4) Also if you have steerbot package of, you can launch it with [launcher](spawn_steerbot.launch) from gazeebo_path_plugin/launch/ by
+	`roslaunch steerbot spawn_steerbot.launch` 
 ## 5) Parameters:
 1. All the parameters have the prefix **/world_spawner**. You can read about the parameters meaning in the [description](Spawner_Discription.pdf).
 2. You can set the required parameter with `rosparam set /world_spawner/parameter_name` or load from .yaml file. The example of the .yaml file for world spawner client is given in [world.yaml](/gazebo_path_plugin/config/world.yaml). Please, get acquainted with it.
