@@ -32,7 +32,7 @@
 	`std::string path_prefix =  "/home/ostapvad/Documents/Gazebo_ws/src/gazebo_path_plugin/models/";`\
 with the path to your wokspace, something like this\
 	`std::string path_prefix =  "/YourPath/YourWorkspace/src/gazebo_path_plugin/models/";`
-
+3. Now go back to the root of your workspace and catkin_make the package
 ## 4) Running
 In the every new terminal put the command into the following order\
 	`roscore` - to run ROS main node\
