@@ -1,4 +1,4 @@
-material MyGroundPlane/Image
+material BrickWall/Image
           {
             technique
             {
@@ -10,11 +10,8 @@ material MyGroundPlane/Image
 
                 texture_unit
                 {
-                  texture asphalt.jpg
+                  texture brick.jpg
                 }
               }
             }
           }
-
-
-   

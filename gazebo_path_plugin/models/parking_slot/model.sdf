@@ -19,7 +19,8 @@
                </friction>
             </surface>
          </collision>
-         <visual name="visual">
+         <!-- 
+            <visual name="visual">
             <pose frame=''>0 0 0 0 -0 0</pose>
             <cast_shadows>false</cast_shadows>
             <geometry>
@@ -36,6 +37,8 @@
                </script>
             </material>
          </visual>
+         -->
+         
          <visual name="visual1">
             <pose frame=''>0 1.2 0.001 0 -0 0</pose>
             <cast_shadows>false</cast_shadows>

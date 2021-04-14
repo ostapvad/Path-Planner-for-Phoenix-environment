@@ -3,8 +3,8 @@
 
 
 int main(int argc, char **argv){
+    ros::init(argc, argv, "spawn_world_client");
+    SpawnedWorld::World new_world;
     
-    SpawnedWorld::World new_world(argc, argv);
-    new_world.SpawnParkingBox(1);
     return 0;
  }
