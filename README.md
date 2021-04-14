@@ -5,16 +5,16 @@
 2. Create ROS workspace, choose any location and folder name(for example Gazebo_ws), then\
 	`mkdir Gazebo_ws && mkdir Gazebo_ws`\
 	`cd Gazebo_ws && catkin_make` 
-3. Copy the folder consisting a Gazebo path plugin into your created workspace\
+3. Copy the folder consisting a Gazebo path plugin(gazebo_path_plugin) into your created workspace. You can do it manually or paste the following comands\
 	 `cd Path-Planner-for-Phoenix-environment-master`\
 	 `cp -a gazebo_path_plugin/ PathToYourWorkspace/Gazebo_ws/src`
 ## 2) Setting paths
-1. Go to your home folder,find .bashrc file, you've two options:
+1. Go to your home folder(/home/user_name),find .bashrc file, you've two options:
 	* Manual: show all hidden files with the command
 	`ctrl+h` and  open this file
 	* Using terminal:
 	`gedit .bashrc`
-2. Insert the following commands in the end of your .bashrc file:
+2. Insert the following commands in the end of your .bashrc file(you can open Info/my_bashrc to see the reference):
 	* after\
 	  `source PathWhereROSisInstalled\distribution\setup.bash`
 	* change the path to your workspace, where you cloned the plugin(Gazebo_ws in our case)\
@@ -25,7 +25,12 @@
  	`echo $ROS_PACKAGE_PATH`\
 	`echo $GAZEBO_PLUGIN_PATH`\
 	`echo $GAZEBO_MODEL_PATH`
-## 3) Compilation:
+## 3) Compiling:
+1. Before compiling(for Gazebo_ws in our case) go to\
+ 	`cd /SomePath/Gazebo_ws/src/gazebo_path_plugin/src/`
+2.Open the spawn_world.hpp with any text editor and update the following row
+	`// Paths to the models 
+std::string path_prefix =  "/home/ostapvad/Documents/Gazebo_ws/src/gazebo_path_plugin/models/";`
 Update the path to models in spawn_world.cpp and build_world.cpp\
 	`path_to_file = "PathToWorkspacesrc/gazebo_path_plugin/models/parking_slot/model.sdf";` 
 ## 4) Running
