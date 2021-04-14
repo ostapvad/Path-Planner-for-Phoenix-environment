@@ -29,10 +29,8 @@
 1. Before compiling(for Gazebo_ws in our case) go to\
  	`cd /SomePath/Gazebo_ws/src/gazebo_path_plugin/src/`
 2. Open the spawn_world.hpp with any text editor and update the following row
-	`// Paths to the models 
-std::string path_prefix =  "/home/ostapvad/Documents/Gazebo_ws/src/gazebo_path_plugin/models/";`
-Update the path to models in spawn_world.cpp and build_world.cpp\
-	`path_to_file = "PathToWorkspacesrc/gazebo_path_plugin/models/parking_slot/model.sdf";` 
+	`//std::string path_prefix =  "/home/ostapvad/Documents/Gazebo_ws/src/gazebo_path_plugin/models/";`
+
 ## 4) Running
 In the every new terminal put the command into the following order\
 	`roscore` - to run ROS main node\
