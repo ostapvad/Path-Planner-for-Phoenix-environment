@@ -37,7 +37,7 @@ with the path to your wokspace, something like this\
 In the every new terminal put the command into the following order\
 	`roscore` - to run ROS main node\
 	`rosrun gazebo_ros gazebo -u`- to start Gazebo simulation node in pause mode\
-In your third terminal you can get the list of all avaliable services and you should see some with prefix `/gazebo/`. Then run the world spawner client with the default parameters 
+In your third terminal you can get the list of all avaliable services and you should see some with prefix `/gazebo/`. Then run the world spawner client with the default parameters\ 
 	`rosrun gazebo_path_plugin world_spawner`
 ## 5) Parameters:
 ## 6) Current results:
