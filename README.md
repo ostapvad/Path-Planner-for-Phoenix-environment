@@ -29,8 +29,8 @@
 1. Before compiling(for Gazebo_ws in our case) go to\
  	`cd /SomePath/Gazebo_ws/src/gazebo_path_plugin/src/`
 2. Open the spawn_world.hpp with any text editor and replace the following row\
-	`std::string path_prefix =  "/home/ostapvad/Documents/Gazebo_ws/src/gazebo_path_plugin/models/";\`
-	with the path to your wokspace, something like this\
+	`std::string path_prefix =  "/home/ostapvad/Documents/Gazebo_ws/src/gazebo_path_plugin/models/";
+with the path to your wokspace, something like this\
 	`std::string path_prefix =  "/YourPath/YourWorkspace/src/gazebo_path_plugin/models/";`
 
 ## 4) Running
