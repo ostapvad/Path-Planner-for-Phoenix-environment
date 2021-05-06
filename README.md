@@ -6,30 +6,29 @@
 2. Clone the master branch of the current repository into your created Gazebo_ws/src, for SSH:\
 	`git clone git@github.com:ostapvad/Path-Planner-for-Phoenix-environment.git` 
 ## 2) Setting paths
+You can skip this part, but I recommend you to set the parameters in your .bashrc following these steps, otherwise you'll have to do it manually after openning a new terminal.
 1. Go to your home folder(/home/user_name),find .bashrc file, you've two options:
 	* Manual: show all hidden files with the command
 	`ctrl+h` and  open this file
 	* Using terminal:
 	`gedit .bashrc`
-2. Insert the following commands in the end of your .bashrc file(you can open Info/my_bashrc to see the reference):
+2. Source your created workspace. Insert the following commands in the end of your .bashrc file(you can open Info/my_bashrc to see the reference):
 	* after\
 	  `source PathWhereROSisInstalled\distribution\setup.bash`
 	* change the path to your workspace, where you cloned the plugin(Gazebo_ws in our case)\
 	`source /SomePath/Gazebo_ws/devel/setup.bash # Path to your workspace`\
-	`export GAZEBO_PLUGIN_PATH=/SomePathGazebo_ws/devel/lib/ # Path to the same workspace for Gazebo plugins`\
-	`export GAZEBO_MODEL_PATH=/SomePath/Gazebo_ws/src/gazebo_path_plugin/models:$GAZEBO_MODEL_PATH # Path to models for Gazebo simulator`	
 3. I personally recommend to put the following commands after inserted in the previous part to see the pathes in a new terminal\
  	`echo $ROS_PACKAGE_PATH`\
 	`echo $GAZEBO_PLUGIN_PATH`\
 	`echo $GAZEBO_MODEL_PATH`
 ## 3) Compiling:
-1. Before compiling(for Gazebo_ws in our case) go to\
- 	`cd /SomePath/Gazebo_ws/src/gazebo_path_plugin/src/`
-2. Open the spawn_world.hpp with any text editor and replace the following row\
-	`std::string path_prefix =  "/home/ostapvad/Documents/Gazebo_ws/src/gazebo_path_plugin/models/";`\
-with the path to your wokspace, something like this\
-	`std::string path_prefix =  "/YourPath/YourWorkspace/src/gazebo_path_plugin/models/";`
-3. Now go back to the root of your workspace and `catkin_make` the package
+1. Go back to the root of your ROS workspace(Gazebo_ws in our case)\
+ 	`cd /SomePath/Gazebo_ws/`
+2. Compile your workspace with\
+         `catkin_make`\
+New GAZEBO model and plugin path will be added automatically\
+        `export GAZEBO_PLUGIN_PATH=/SomePathGazebo_ws/devel/lib/ # Path to the same workspace for Gazebo plugins`\
+	`export GAZEBO_MODEL_PATH=/SomePath/Gazebo_ws/src/gazebo_path_plugin/models:$GAZEBO_MODEL_PATH # Path to models for Gazebo simulator`	
 ## 4) Running
 1) In the every new terminal put the command into the following order\
 	`roscore` - to run ROS main node\
@@ -41,8 +40,16 @@ with the path to your wokspace, something like this\
 	`roslaunch steerbot spawn_steerbot.launch` 
 ## 5) Parameters:
 1. All the parameters have the prefix **/world_spawner**. You can read about the parameters meaning in the [description](Spawner_Discription.pdf).
-2. You can set the required parameter with `rosparam set /world_spawner/parameter_name` or load from .yaml file. The example of the .yaml file for world spawner client is given in [world.yaml](/gazebo_path_plugin/config/world.yaml). Please, get acquainted with it.
-4. After setting your parameters, you have to run the world spawner again and the parameters will be updated to yours. **Attention!** Also the client runs so that  firstly deletes all spawned models before, then takes the given parameters and spawns new world. Deleting all the models can take some amount of time, so I recommend you to abort `rosrun gazebo_ros gazebo -u` and run it again and then run world spawner client. It will delete only the single ground plane which want take much time.
+2. You can set the required parameter with\
+	`rosparam set /world_spawner/parameter_name`\
+or load from .yaml file\
+	`rosparam load pathToYamlFile.yaml`
+The example of the .yaml file for world spawner client is given in [world.yaml](/gazebo_path_plugin/config/world.yaml). Please, get acquainted with it.
+3. After setting your parameters, you have to run the world spawner again and the parameters will be updated to yours. **Attention!** Also the client runs so that  firstly deletes all spawned models before, then takes the given parameters and spawns new world. Deleting all the models can take some amount of time, so I recommend you to abort `rosrun gazebo_ros gazebo -u` and run it again and then run world spawner client. It will delete only the single ground plane which want take much time.
+4. Alternative way of running with the updated parameters, the easiest. You can set the new parameters in world.yaml, save it. If there has nothing been spawned yet(recommended), run the spawner with parameters from world.yaml using the roslaunch file\
+	`roslaunc gazebo_path_plugin`
+Also you can update this roslauncher, just replace this path to your new created .yaml file.\
+`Some path`
 ## 6) Current results:
 Blok C with 10 rows in the each parking box, cars were spawned randomly on the parking slots
 ![default_gzclient_camera(1)-2021-04-14T20_50_12 611681](https://user-images.githubusercontent.com/49625282/114766896-42a16d80-9d67-11eb-83bd-d9ad24a2b903.jpg)
