@@ -28,7 +28,7 @@ You can skip this part, but I recommend you to set the parameters in your .bashr
          `catkin_make`\
  New GAZEBO model and plugin path will be added automatically\
         `export GAZEBO_PLUGIN_PATH=/SomePathGazebo_ws/devel/lib/ # Path to the same workspace for Gazebo plugins`\
-	`export GAZEBO_MODEL_PATH=/SomePath/Gazebo_ws/src/gazebo_path_plugin/models:$GAZEBO_MODEL_PATH # Path to models for Gazebo simulator`	
+	`export GAZEBO_MODEL_PATH=/SomePath/Gazebo_ws/src/Path-Planner-for-Phoenix-environment/gazebo_path_plugin/models:$GAZEBO_MODEL_PATH # Path to models for Gazebo simulator`	
 ## 4) Running
 1) In the every new terminal put the command into the following order\
 	`roscore` - to run ROS main node\
