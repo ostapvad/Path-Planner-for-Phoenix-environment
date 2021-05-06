@@ -34,13 +34,13 @@ You can skip this part, but I recommend you to set the parameters in your .bashr
 	`roscore` - to run ROS main node\
 	`rosrun gazebo_ros gazebo -u`- to start Gazebo simulation node in pause mode\
 2) In your third terminal you can get the list of all avaliable services and you should see some with prefix `/gazebo/`. Then run the world spawner client with the default parameters: 
-	`rosrun gazebo_path_plugin world_spawner`\
+	`rosrun gazebo_path_plugin world_spawner`
 3) Now you can change your world or save. **Attention!** All the changes you do with your world manually won't be monitored by the world spawner, it only helps you to spawn the specific type of the world.
 4) Also if you have [steerbot package](https://github.com/peconver/skoda_simulation/tree/master/src/ackermannsteer/steerbot) in the same workspace as the current plugin, you can launch a robot to the created world with [launcher](gazebo_path_plugin/launch/spawn_steerbot.launch) by\
 	`roslaunch steerbot spawn_steerbot.launch` 
 ## 5) Parameters:
 1. All the parameters have the prefix **/world_spawner**. You can read about the parameters meaning in the [description](Other/INFO/SpawnerDescription.pdf).
-2. You can set the required parameter with
+2. You can set the required parameter with\
 	`rosparam set /world_spawner/parameter_name`\
 or load from .yaml file\
 	`rosparam load pathToYamlFile.yaml`\
