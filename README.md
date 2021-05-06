@@ -46,7 +46,7 @@ or load from .yaml file\
 	`rosparam load pathToYamlFile.yaml`\
 The example of the .yaml file for world spawner client is given in [world.yaml](/gazebo_path_plugin/config/world.yaml). Please, get acquainted with it.
 3. After setting your parameters, you have to run the world spawner again and the parameters will be updated to yours. **Attention!** Also the client runs so that  firstly deletes all spawned models before, then takes the given parameters and spawns new world. Deleting all the models can take some amount of time, so I recommend you to abort `rosrun gazebo_ros gazebo -u` and run it again and then run world spawner client. It will delete only the single ground plane which want take much time.
-4. Alternative way of running with the updated parameters, the easiest. You can set the new parameters in world.yaml, save it. If there has nothing been spawned yet(recommended), run the spawner with parameters from world.yaml using the roslaunch file\
+4. Alternative way of running with the updated parameters, the easiest one. You can set the new parameters in world.yaml, save it. If there has nothing been spawned yet(recommended), run the spawner with parameters from world.yaml using the roslaunch file\
 	`roslaunc gazebo_path_plugin`
 Also you can update this roslauncher, just replace this path to your new created .yaml file.\
 `Some path`
