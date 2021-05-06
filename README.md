@@ -16,7 +16,7 @@ You can skip this part, but I recommend you to set the parameters in your .bashr
 	* after\
 	  `source PathWhereROSisInstalled\distribution\setup.bash`
 	* change the path to your workspace, where you cloned the plugin(Gazebo_ws in our case)\
-	`source /SomePath/Gazebo_ws/devel/setup.bash # Path to your workspace`\
+	`source /SomePath/Gazebo_ws/devel/setup.bash # Path to your workspace`
 3. I personally recommend to put the following commands after inserted in the previous part to see the pathes in a new terminal\
  	`echo $ROS_PACKAGE_PATH`\
 	`echo $GAZEBO_PLUGIN_PATH`\
