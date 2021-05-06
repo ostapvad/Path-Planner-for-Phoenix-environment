@@ -51,8 +51,11 @@ The example of the .yaml file for world spawner client is given in [world.yaml](
 Also you can update this [roslaunch file](/gazebo_path_plugin/launch/loadWorldParam.launch) to set the parameters from another .yaml, just replace the path
  `	<rosparam file="$(find gazebo_path_plugin)/config/world.yaml" />` to your new created .yaml file.
 ## 6) Current results:
-Blok C with 10 rows in the each parking box, cars were spawned randomly on the parking slots
+1) Blok C with 10 rows in the each parking box, cars were spawned randomly on the parking slots
 ![default_gzclient_camera(1)-2021-04-14T20_50_12 611681](https://user-images.githubusercontent.com/49625282/114766896-42a16d80-9d67-11eb-83bd-d9ad24a2b903.jpg)
+2) Full blok C with 10 rows and 140 cars on the parking slots
+![default_gzclient_camera(1)-2021-05-05T21_59_35 282525](https://user-images.githubusercontent.com/49625282/117245072-7a697580-ae3a-11eb-977d-05a027f742a2.jpg)
+
 
 
 
