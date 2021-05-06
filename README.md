@@ -38,6 +38,8 @@ You can skip this part, but I recommend you to set the parameters in your .bashr
 3) Now you can change your world or save. **Attention!** All the changes you do with your world manually won't be monitored by the world spawner, it only helps you to spawn the specific type of the world.
 4) Also if you have [steerbot package](https://github.com/peconver/skoda_simulation/tree/master/src/ackermannsteer/steerbot) in the same workspace as the current plugin, you can launch a robot to the created world with [launcher](gazebo_path_plugin/launch/spawn_steerbot.launch) by\
 	`roslaunch steerbot spawn_steerbot.launch` 
+5) In case of incorrect closing of Gazebo simulator use the following commands to prevent the further spawning problems and run the Gazebo simulator correctly again\
+	`killall gzserver && killall gzclient`
 ## 5) Parameters:
 1. All the parameters have the prefix **/world_spawner**. You can read about the parameters meaning in the [description](Other/INFO/SpawnerDescription.pdf).
 2. You can set the required parameter with\
