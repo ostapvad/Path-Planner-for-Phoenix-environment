@@ -39,7 +39,7 @@ You can skip this part, but I recommend you to set the parameters in your .bashr
 4) Also if you have [steerbot package](https://github.com/peconver/skoda_simulation/tree/master/src/ackermannsteer/steerbot) in the same workspace as the current plugin, you can launch a robot to the created world with [launcher](gazebo_path_plugin/launch/spawn_steerbot.launch) by\
 	`roslaunch steerbot spawn_steerbot.launch` 
 ## 5) Parameters:
-1. All the parameters have the prefix **/world_spawner**. You can read about the parameters meaning in the [description](Spawner_Discription.pdf).
+1. All the parameters have the prefix **/world_spawner**. You can read about the parameters meaning in the [description](Other/INFO/Spawner_Discription.pdf).
 2. You can set the required parameter with\
 	`rosparam set /world_spawner/parameter_name`\
 or load from .yaml file\
