@@ -1,17 +1,18 @@
-#include "ros/ros.h"
-#include <iostream>
+// Some additional functions 
 #include <fstream>
 #include "geometry_msgs/Quaternion.h"
 #include <cmath>
 
 
 
-std::string readFileIntoString2(const std::string & path) { // To read the file into the string
+std::string readFileIntoString2(const std::string & str_path) { // To read the file into the string
     auto ss = std::ostringstream{};
-    std::ifstream input_file(path);
+    //std::filesystem::path;
+
+    std::ifstream input_file(str_path);
     if (!input_file.is_open()) {
         std::cerr << "Could not open the file - '"
-             << path << "'" << std::endl;
+             << str_path << "'" << std::endl;
         exit(EXIT_FAILURE);
     }
     ss << input_file.rdbuf();

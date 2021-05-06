@@ -18,7 +18,7 @@ set_tmux(){
     windows_names=("Main node" "Gazebo" "Model launcher")
     commands=("roscore" 
               "rosrun gazebo_ros gazebo -u"
-              "rosrun gazebo_path_plugin builder")
+              "rosrun gazebo_path_plugin world_spawner")
 
     # Set the windows
     tmux new-session -d -s $session_name -n "${windows_names[0]}"

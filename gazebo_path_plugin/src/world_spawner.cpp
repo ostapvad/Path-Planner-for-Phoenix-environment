@@ -1,21 +1,30 @@
+// Definition of world_spawner service-client node and it's logic
 
+// Written files
+#include "parameters.cpp"
+#include "parking_boxes.cpp"
+
+// ROS
+#include "ros/package.h"
+
+//Data msgs  
 #include "std_msgs/String.h"
 #include "std_msgs/Float64.h"
-#include "parameters.hpp"
-#include "parking_boxes.hpp"
 
+// server-client msgs
 #include "gazebo_msgs/SpawnModel.h" 
 #include "gazebo_msgs/GetModelState.h"
 #include "gazebo_msgs/DeleteModel.h"
 #include "gazebo_msgs/GetWorldProperties.h"
+
 #define NULL __null
 
 // Paths to the models 
-std::string path_prefix =  "/home/ostapvad/Documents/Gazebo_ws/src/gazebo_path_plugin/models/"; // Path to models folder in gazebo_path_plugin; UPDATE to your one !
-std::vector<std::string> created_models = {path_prefix + "parking_slot/model.sdf", path_prefix + "car/model.sdf", path_prefix + "asphalt/model.sdf", path_prefix + "ground_plane/model.sdf"}; // {parking_slot, car, asphalt, ground_plane}
+std::string path_prefix = ros::package::getPath("gazebo_path_plugin") + "/models";
+std::vector<std::string> created_models = {path_prefix + "/parking_slot/model.sdf", path_prefix + "/car/model.sdf", path_prefix + "/asphalt/model.sdf", path_prefix + "/ground_plane/model.sdf"}; // {parking_slot, car, asphalt, ground_plane}
 
 
-
+// Definition of spawner class
 namespace SpawnedWorld{
 class World {
     public: 
@@ -92,10 +101,10 @@ class World {
             }
 
             // choose random car spawner
-
+            int NumCarsOnSlots = 0;
             if(params.random_type_spawn[0]){
                 SpawnRandomPos_Box(params.cars_to_spawn[0]);}
-
+                NumCarsOnSlots = total_spawned_cars;
             if(params.random_type_spawn[1] && params.random_rectangle_area.size() == 4){
                 float xy[2] = {params.random_rectangle_area[0], params.random_rectangle_area[1]};
                 int rectangle[2] = {(int) abs(params.random_rectangle_area[2]), (int) abs(params.random_rectangle_area[3])};
@@ -104,10 +113,20 @@ class World {
             
             
             params.ShowParameters();
-
+            ShowParkingInfo(NumCarsOnSlots);
 
         }
         
+        void ShowParkingInfo(int CarsOnSlots){
+            printf("------------------------------------\nParking information:\n");
+            printf("Number of slots spawned = %d\n", total_slots);
+            printf("Number of randomly spawned cars = %d \n", total_spawned_cars);
+            printf("a) On the parking slots: %d \nb) On the rectangle area: %d\n", CarsOnSlots, total_spawned_cars - CarsOnSlots);
+            printf("------------------------------------\n");
+
+
+        }
+
         /*Build the full parking: D and C block*/
         void BuildFull(int slots_number, float init_xy[2]){
                 BuildBlockD(slots_number, init_xy);
@@ -151,27 +170,35 @@ class World {
        /*Spawns the cars on the parking slots*/
        void SpawnRandomPos_Box(int num_cars){
             int rand_id, rand_row, rand_col;
-            for (int i = 0; i < num_cars; i++){
+            
+          
+            
+            while (total_spawned_cars < num_cars){
+            
                 if (total_spawned_cars >= total_slots){
-                    std::cout <<"Places are full!\n";   
-                    break;
+
+                        std::cout <<"Places are full!\n"; 
+                        break;
                 }
-              
+                
                 rand_id =  rand() % created_boxes.size();
                 rand_row =  rand() % div(created_boxes[rand_id]->slots_number, created_boxes[rand_id]->rotations.size()).quot;
                 rand_col = rand() %   created_boxes[rand_id]->rotations.size();
+                
                 geometry_msgs:: Pose *pose = GetPose(rand_id, rand_row, rand_col,state_client, srv_state);
                
                
-                if (pose == NULL || created_boxes[rand_id]->is_full(rand_row, rand_col)) std::cout << "Parking slot isn't availiable!\n";
+                if (pose == NULL || created_boxes[rand_id]->is_full(rand_row, rand_col)) std::cout << "\n........Parking slot isn't availiable!........\n";
                 else {
                     SpawnModel(*pose, created_models[1], "car" +std::to_string(total_spawned_cars));
                     created_boxes[rand_id]->UpdatePlace(rand_row, rand_col, true);
                     total_spawned_cars ++;
+                    std::cout << "Cars spawned: " << total_spawned_cars << std::endl;
                 }
                
 
             }
+             
        }
  
         /*returns the position of the slot by its parameters: id, row and columns*/      
@@ -229,6 +256,7 @@ class World {
                 RotZToQuat(car_pose.orientation, rand() % 361);
                 SpawnModel(car_pose, created_models[1], "car" +std::to_string(total_spawned_cars));
                 total_spawned_cars ++;
+                std::cout << "Cars spawned: " << total_spawned_cars << std::endl;
 
             }
 

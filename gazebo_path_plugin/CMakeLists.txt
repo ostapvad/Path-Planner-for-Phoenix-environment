@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(gazebo_path_plugin)
 
+
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -208,9 +209,9 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-#add_executable(builder /home/ostapvad/Documents/Gazebo_ws/src/gazebo_path_plugin/src/build_world.cpp)
 
-
+# add shell file for gazebo path settings
+catkin_add_env_hooks(gazebo_env SHELLS sh DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/scripts)
 
 add_executable(world_spawner src/spawn_world.cpp)
 target_link_libraries(world_spawner ${catkin_LIBRARIES})
