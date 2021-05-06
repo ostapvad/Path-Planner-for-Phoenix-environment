@@ -6,7 +6,7 @@
 2. Clone the master branch of the current repository into your created Gazebo_ws/src, for SSH:\
 	`git clone git@github.com:ostapvad/Path-Planner-for-Phoenix-environment.git` 
 ## 2) Setting paths
-You can skip this part, but I recommend you to set the parameters in your .bashrc following these steps, otherwise you'll have to do it manually after openning a new terminal.
+You can skip this part, but I recommend you to set the parameters in your .bashrc file following these steps, otherwise you'll have to do it manually after openning a new terminal.
 1. Go to your home folder(/home/user_name),find .bashrc file, you've two options:
 	* Manual: show all hidden files with the command
 	`ctrl+h` and  open this file
