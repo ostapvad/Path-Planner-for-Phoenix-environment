@@ -208,4 +208,12 @@ include_directories(
 
 add_executable(maneuvers src/test.cpp)
 target_link_libraries(maneuvers ${catkin_LIBRARIES})
+<<<<<<< HEAD
 #add_dependencies(maneuvers basic_maneuvers_generate_messages_cpp)
+=======
+<<<<<<< HEAD
+#add_dependencies(maneuvers basic_maneuvers_generate_messages_cpp)
+=======
+add_dependencies(maneuvers basic_maneuvers_generate_messages_cpp)
+>>>>>>> b59088bb099eb36023c593af25cdf1a30b284305
+>>>>>>> 18b3948eb19fcdb27e360a638f9886912a2d8ade
