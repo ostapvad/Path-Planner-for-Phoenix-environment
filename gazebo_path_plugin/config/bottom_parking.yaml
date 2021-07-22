@@ -1,0 +1,12 @@
+/world_spawner/enable_asphalt: true
+/world_spawner/plane_sizes: [35, 30]
+/world_spawner/plane_pose: [0.5, 8.4] 
+/world_spawner/steerbot_road_width: 4
+/world_spawner/random_type_spawn: [false, true]
+/world_spawner/random_cars_to_spawn: [10, 5]
+/world_spawner/random_rectangle_area: [3.5, 5.5, 25, 25]
+/world_spawner/boxes_to_spawn: ['1', '4', '4']
+/world_spawner/boxes_x_pose: [15.75, 14.5, -5]
+/world_spawner/boxes_y_pose: [20.5, 2, 2]
+/world_spawner/boxes_rows_number: [14, 5, 5]
+
