@@ -1,6 +1,7 @@
 // Parsing the parking box(not world_spawner node) parameters
 
 #include "parking_slots.hpp"
+
 #include "geometry_msgs/Pose.h"
 #include <vector>
 

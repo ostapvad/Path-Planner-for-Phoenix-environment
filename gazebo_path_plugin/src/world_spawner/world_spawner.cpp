@@ -34,18 +34,20 @@ class World {
         float l_p = 5.5;  //[m] - length of parking slot
         float line_width = 0.1; // width of parking white line
         int plane_length, plane_width; // size of the plane (parameter)
-
+        std::vector<float> plane_xy = {0, 0};
         float car_height = 0.321049; // z coordinate of the car
         int total_spawned_cars = 0; // number of spawned cars
         int total_slots = 0;       // number of spawned slots
-      
+        int num_recently_added_boxes = 0;   // boxes added on the previouse plane
+        std::string plane_postfix = "_1"; // plane number
 
         float next_pose[2] = {0, 0}; // last pose of D parking to spawn full parking
         
         std::vector<ParkingBoxes::Box*> created_boxes; // array of created parking blocks/boxes
-        
+
         // init the required Nodes
         ros::NodeHandle spawner;
+       
         ros::ServiceClient client_spawner = spawner.serviceClient<gazebo_msgs::SpawnModel>("/gazebo/spawn_sdf_model");
         ros::ServiceClient state_client =  spawner.serviceClient<gazebo_msgs::GetModelState>("/gazebo/get_model_state");
         ros::ServiceClient delete_client = spawner.serviceClient<gazebo_msgs::DeleteModel>("/gazebo/delete_model");
@@ -55,28 +57,40 @@ class World {
         gazebo_msgs::DeleteModel srv_deleter;
         gazebo_msgs::GetWorldProperties srv_status;
         
-        World(){
-            ClearWorld();  
-            RunSpawner();    
+        // Parameters of spawner
+        Parameters::WorldParameters params;
+        
+       
+        World(bool clear=false){
+            if (clear) ClearWorld();   
+            params.SetWorldParameters(spawner);
         }
+
+        
         
         /*the main function*/
-        void RunSpawner(){
+        void RunSpawner(std::string plane_num = "_1"){
+            
+            // "init" the new parking plane
+            this->num_recently_added_boxes = 0;
+            this->plane_postfix = plane_num;
+            this->total_slots = 0;
+            this->total_spawned_cars = 0;
+            
             // running by given parameters
-           
-            WorldParameters params(spawner);
-            w_s = params.steerbot_road_width;
-            plane_length = params.plane_sizes[0];
-            plane_width = params.plane_sizes[1];
-          
-     
+            this->w_s = params.steerbot_road_width;
+            this->plane_length = params.plane_sizes[0];
+            this->plane_width = params.plane_sizes[1];
+            this->plane_xy = params.plane_pose;
+            
+    
             // asphalt or empty plane
-            if(params.enable_asphalt) SpawnPlane(plane_length, plane_width, created_models[2], "asphalt");
-            else  SpawnPlane(plane_length, plane_width, created_models[3], "ground_plane");
-
+            if(params.enable_asphalt) SpawnPlane(this->plane_length, this->plane_width, created_models[2], "asphalt" + this->plane_postfix, this->plane_xy[0], this->plane_xy[1]);
+            else  SpawnPlane(this->plane_length, this->plane_width, created_models[3], "ground_plane" + this->plane_postfix, this->plane_xy[0], this->plane_xy[1]);
+            
             // boxes to spawn
             for (int i=0; i<params.boxes.size(); i++){
-    
+        
                 switch (params.boxes[i]->parking_type)
                 {
                 case 'C':
@@ -91,12 +105,12 @@ class World {
                     BuildFull(params.boxes[i]->parking_box_rows, params.boxes[i]->init_xy);
                     break;
                 default:
-                    int type_id = params.boxes_to_spawn[i][0] - '0';
+                
+                    int type_id = params.boxes[i]->parking_type - '0';
                     InitParkingBox(type_id, params.boxes[i]->init_xy, params.boxes[i]->parking_box_rows);
-                    BuildParkingBox(created_boxes[i], params.boxes[i]->parking_box_rows);
                     break;
                 }
-
+            
 
             }
 
@@ -104,24 +118,23 @@ class World {
             int NumCarsOnSlots = 0;
             if(params.random_type_spawn[0]){
                 SpawnRandomPos_Box(params.cars_to_spawn[0]);}
-                NumCarsOnSlots = total_spawned_cars;
+                NumCarsOnSlots = this->total_spawned_cars;
             if(params.random_type_spawn[1] && params.random_rectangle_area.size() == 4){
                 float xy[2] = {params.random_rectangle_area[0], params.random_rectangle_area[1]};
                 int rectangle[2] = {(int) abs(params.random_rectangle_area[2]), (int) abs(params.random_rectangle_area[3])};
                 SpawnRandomPos(xy, rectangle, params.cars_to_spawn[1]);
             }
             
-            
             params.ShowParameters();
             ShowParkingInfo(NumCarsOnSlots);
 
         }
-        
+        /*prints the parking info on the screen*/
         void ShowParkingInfo(int CarsOnSlots){
             printf("------------------------------------\nParking information:\n");
-            printf("Number of slots spawned = %d\n", total_slots);
-            printf("Number of randomly spawned cars = %d \n", total_spawned_cars);
-            printf("a) On the parking slots: %d \nb) On the rectangle area: %d\n", CarsOnSlots, total_spawned_cars - CarsOnSlots);
+            printf("Number of slots spawned = %d\n", this->total_slots);
+            printf("Number of randomly spawned cars = %d \n", this->total_spawned_cars);
+            printf("a) On the parking slots: %d \nb) On the rectangle area: %d\n", CarsOnSlots, this->total_spawned_cars - CarsOnSlots);
             printf("------------------------------------\n");
 
 
@@ -136,12 +149,9 @@ class World {
         
         /*Deletes the model of the world*/
         void DeleteModel(std::string mod_name){
-            srv_deleter.request.model_name = mod_name;
-            if (delete_client.call(srv_deleter) && delete_client.exists()){ ROS_INFO("Response: %s\n", srv_deleter.response.status_message.c_str());}
-            else {
-                ROS_ERROR("Failed to call service\n");
-                } 
-
+            this->srv_deleter.request.model_name = mod_name;
+            if (this->delete_client.call(srv_deleter) && this->delete_client.exists()){ ROS_INFO("Response: %s\n", srv_deleter.response.status_message.c_str());}
+            else {ROS_ERROR("Failed to call service\n");} 
 
         }
         
@@ -150,7 +160,7 @@ class World {
             
             std::vector<std::string> models;
             std::cout<<"Resetting the world!\n";
-            if (world_status_client.call(srv_status) && world_status_client.exists()){ 
+            if (this->world_status_client.call(srv_status) && this->world_status_client.exists()){ 
                 ROS_INFO("Response: %s\n", srv_status.response.status_message.c_str());
                 models = srv_status.response.model_names;
             }
@@ -170,30 +180,30 @@ class World {
        /*Spawns the cars on the parking slots*/
        void SpawnRandomPos_Box(int num_cars){
             int rand_id, rand_row, rand_col;
+             
+            while (this->total_spawned_cars < num_cars && this->num_recently_added_boxes !=0){
             
-          
-            
-            while (total_spawned_cars < num_cars){
-            
-                if (total_spawned_cars >= total_slots){
+                if (this->total_spawned_cars >= this->total_slots){
 
                         std::cout <<"Places are full!\n"; 
                         break;
                 }
+              
+                do{rand_id =  rand() % this->created_boxes.size();}
+                while(created_boxes.size() - this->num_recently_added_boxes > rand_id ) ;
+        
+                rand_row =  rand() % div(this->created_boxes[rand_id]->slots_number, this->created_boxes[rand_id]->rotations.size()).quot;
+                rand_col = rand() %  this->created_boxes[rand_id]->rotations.size();
                 
-                rand_id =  rand() % created_boxes.size();
-                rand_row =  rand() % div(created_boxes[rand_id]->slots_number, created_boxes[rand_id]->rotations.size()).quot;
-                rand_col = rand() %   created_boxes[rand_id]->rotations.size();
-                
-                geometry_msgs:: Pose *pose = GetPose(rand_id, rand_row, rand_col,state_client, srv_state);
-               
-               
-                if (pose == NULL || created_boxes[rand_id]->is_full(rand_row, rand_col)) std::cout << "\n........Parking slot isn't availiable!........\n";
+                geometry_msgs:: Pose *pose = GetPose(rand_id, rand_row, rand_col, this->state_client, this->srv_state);
+                      
+                if (pose == NULL || this->created_boxes[rand_id]->is_full(rand_row, rand_col)) std::cout << "\n........Parking slot isn't availiable!........\n";
                 else {
-                    SpawnModel(*pose, created_models[1], "car" +std::to_string(total_spawned_cars));
-                    created_boxes[rand_id]->UpdatePlace(rand_row, rand_col, true);
-                    total_spawned_cars ++;
-                    std::cout << "Cars spawned: " << total_spawned_cars << std::endl;
+            
+                    SpawnModel(*pose, created_models[1], "car" +std::to_string(this->total_spawned_cars) + this->plane_postfix);
+                    this->created_boxes[rand_id]->UpdatePlace(rand_row, rand_col, true);
+                    this->total_spawned_cars ++;
+                    std::cout << "Cars spawned: " << this->total_spawned_cars << std::endl;
                 }
                
 
@@ -220,7 +230,9 @@ class World {
         }
 
         /*Spawns the plane of reaquired type and size*/
-        void SpawnPlane(int length, int width, std::string PathToFile, std::string model_name){
+        void SpawnPlane(int length, int width, std::string PathToFile, std::string model_name, float init_x = 0, float init_y = 0){
+            
+            // Update the sizes of the plane in the file
             std::string asphalt =readFileIntoString2(PathToFile);
             std::string sizes = std::to_string(length) + " " + std::to_string(width);
             std::size_t from = asphalt.find("size");
@@ -229,12 +241,20 @@ class World {
             from = asphalt.find("size", to+5);
             to = asphalt.find("<", from+1);
             asphalt.replace(from+5, to - from -5, sizes);
-            // Update srv   
-            srv_spawner.request.model_name = model_name;
-            srv_spawner.request.model_xml = asphalt;
+            
+            // Update srv  
+            
+            // pose in 2D dimension
+            this->srv_spawner.request.initial_pose.position.x = init_x;
+            this->srv_spawner.request.initial_pose.position.y = init_y;
+            this->srv_spawner.request.initial_pose.position.z = 0;
+            
+            // model and  name
+            this->srv_spawner.request.model_name = model_name;
+            this->srv_spawner.request.model_xml = asphalt;
         
             // Call spawner and show result
-            bool result = CallSpawner(client_spawner, srv_spawner);
+            bool result = CallSpawner(this->client_spawner, this->srv_spawner);
             std::string output = (result)? "Spawned!\n" : "Error!\n";
             std::cout << output;
 
@@ -249,12 +269,16 @@ class World {
             car_pose.position.z = car_height;
             
             for (int i = 0; i < car_numbers; i++){
-              
+                
+                // random pose
                 car_pose.position.x = rand() % rectangle[0] + xy[0];
                 car_pose.position.y = rand() % rectangle[1] + xy[0]; 
-
+                
+                // Random yam orientaion in [0; 360] deg
                 RotZToQuat(car_pose.orientation, rand() % 361);
-                SpawnModel(car_pose, created_models[1], "car" +std::to_string(total_spawned_cars));
+
+                //Spawn and update info
+                SpawnModel(car_pose, created_models[1], "car" +std::to_string(this->total_spawned_cars) + this->plane_postfix);
                 total_spawned_cars ++;
                 std::cout << "Cars spawned: " << total_spawned_cars << std::endl;
 
@@ -263,23 +287,16 @@ class World {
 
         }
         
-        /* Prints the boxes info to the terminal*/    
-        void ShowSpawnedBoxes(){
-            for(int i=0; i<created_boxes.size(); i++){
-                created_boxes[i]->ShowParameters();               
-            }
-
-        }
                
         /* Spawns the model on the required position*/
         bool SpawnModel(geometry_msgs::Pose pose, std::string PathToFile, std::string model_name){
             // Update srv   
-            srv_spawner.request.model_name = model_name;
-            srv_spawner.request.model_xml = readFileIntoString2(PathToFile);
-            srv_spawner.request.initial_pose = pose;
+            this->srv_spawner.request.model_name = model_name;
+            this->srv_spawner.request.model_xml = readFileIntoString2(PathToFile);
+            this->srv_spawner.request.initial_pose = pose;
         
             // Call spawner and show result
-            bool result = CallSpawner(client_spawner, srv_spawner);
+            bool result = CallSpawner(this->client_spawner, this->srv_spawner);
             std::string output = (result)? "Spawned!\n" : "Error!\n";
             std::cout << output;
             return result;
@@ -317,6 +334,7 @@ class World {
                         // Complicated calculations ;)
                         new_pose.position.x = b->pose.x - i*(w_p - line_width);
                         new_pose.position.y = b->pose.y - j*(l_p - line_width);
+                    
                         RotZToQuat(new_pose.orientation, b->rotations[j]);
                         
                         // Spawn model !
@@ -364,9 +382,11 @@ class World {
    
         /*Pushes the new box to the created_boxes array*/
         void InitParkingBox(int type_id, float init_xy[2], int slots_number){
+            
             ParkingBoxes::Box *b = new ParkingBoxes::Box (type_id, init_xy, created_boxes.size()); 
-            created_boxes.push_back(b);
+            this->created_boxes.push_back(b);
             BuildParkingBox(b, slots_number);
+            this->num_recently_added_boxes ++;
         }
 
         /*Build the blok D of the parking*/
@@ -394,12 +414,12 @@ class World {
                     }
                     else {
                         init_xy[0] +=   w_p + (slots_number-1)*(w_p - line_width) + w_s;   
-                        init_xy[1] -=   created_boxes.back()->rotations.size()*l_p + w_s;
+                        init_xy[1] -=   this->created_boxes.back()->rotations.size()*l_p + w_s;
                         }
 
                 }
-                next_pose[0] = init_xy[0];
-                next_pose[1] = init_xy[1];
+                this->next_pose[0] = init_xy[0];
+                this->next_pose[1] = init_xy[1];
 
             }
         
