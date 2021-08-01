@@ -60,5 +60,6 @@ Also you can update this [roslaunch file](/gazebo_path_plugin/launch/loadWorldPa
 ![default_gzclient_camera(1)-2021-05-05T21_59_35 282525](https://user-images.githubusercontent.com/49625282/117245072-7a697580-ae3a-11eb-977d-05a027f742a2.jpg)
 3) Controller tests
 ![1](https://user-images.githubusercontent.com/49625282/127756083-76850260-1ee2-42c3-a75d-d1997ae84e22.jpg)
-
+4) World approximation
+![2](https://user-images.githubusercontent.com/49625282/127756095-6913b8e6-da0e-4565-af8a-2017dcf86c21.jpg)
 
