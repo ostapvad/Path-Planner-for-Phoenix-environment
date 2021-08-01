@@ -24,6 +24,7 @@ void SteerBot::Robot::initPublishers(ros::NodeHandle *node){
 }
             
 void SteerBot::Robot::initParameters(){
+<<<<<<< HEAD
     this->cur_state.pose.x = default_x;
     this->cur_state.pose.y = default_y;
     this->cur_state.pose.theta = default_yaw;
@@ -40,10 +41,19 @@ void SteerBot::Robot::initParameters(){
     init_pose.x = 0;
     init_pose.y = 20;
     GenerateCircle(20, 100, init_pose);
+=======
+    this->pose.coord.x =  default_x;
+    this->pose.coord.y = default_y;
+    this->pose.yaw =  default_yaw;
+    this->wheels.omega = 0;
+    this->wheels.alpha = 0;
+    this->CurState = STOP;
+>>>>>>> b45cb02c4b15ab5103ac7fe4cc7e88b829370475
 }
             
 // Communication callbacks
 void SteerBot::Robot::statusCallback(const phoenix_msgs::Status::ConstPtr &data){
+<<<<<<< HEAD
     
     this->cur_state.heading_speed =data->currentForwardSpeed;
     this->cur_state.steering.angle = data->currentTurnAngle;
@@ -57,6 +67,17 @@ void SteerBot::Robot::odomCallback(const nav_msgs::Odometry::ConstPtr &data){
     
     //printf("(x, y) = (%f, %f), yaw = %f\n", this->cur_state.pose.x, this->cur_state.pose.y, this->cur_state.pose.theta);
     //PathController(this->ref_pose, this->cur_state);
+=======
+    this->wheels.omega = data->currentForwardSpeed;
+    this->wheels.alpha = data->currentTurnAngle;
+    
+}
+            
+void SteerBot::Robot::odomCallback(const nav_msgs::Odometry::ConstPtr &data){
+    this->pose.coord.x = data->pose.pose.position.x;
+    this->pose.coord.y = data->pose.pose.position.y;
+    this->pose.yaw = QuatToYaw(data->pose.pose.orientation);
+>>>>>>> b45cb02c4b15ab5103ac7fe4cc7e88b829370475
 }
 
 std::string SteerBot::Robot::GetCurrentState(){
@@ -74,6 +95,7 @@ std::string SteerBot::Robot::GetCurrentState(){
     
 }
 
+<<<<<<< HEAD
 void SteerBot::Robot::SetVelocity(float heading_speed, float steering_speed){
     msg_vel.linear.x =heading_speed;
     msg_vel.angular.z = steering_speed;
@@ -141,4 +163,15 @@ bool SteerBot::Robot::PathController(geometry_msgs::Pose2D  ref_state, Parameter
     SetVelocity(heading_speed, steering_speed);
     return false;
 }
+=======
+void SteerBot::Robot::SetVelocity(float req_omega, float req_alpha){
+    msg_vel.linear.x = req_omega;
+    msg_vel.angular.z = req_alpha;
+    wheels.pub_wheels.linear, wheels.pub_wheels.angular = req_omega, req_alpha;
+    this->cmd_vel.publish(msg_vel); 
+    std::cout<<"linear = " << msg_vel.linear.x << "angular = " << msg_vel.angular.z << std::endl;
+}
+
+
+>>>>>>> b45cb02c4b15ab5103ac7fe4cc7e88b829370475
 

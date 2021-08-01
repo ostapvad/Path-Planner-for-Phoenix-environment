@@ -69,8 +69,12 @@
         "random": "cpp",
         "set": "cpp",
         "string": "cpp",
+<<<<<<< HEAD
         "string_view": "cpp",
         "condition_variable": "cpp",
         "mutex": "cpp"
+=======
+        "string_view": "cpp"
+>>>>>>> b45cb02c4b15ab5103ac7fe4cc7e88b829370475
     }
 }

@@ -5,6 +5,7 @@
 
 namespace SteerBot{
     namespace Parameters{
+<<<<<<< HEAD
         typedef struct{
             geometry_msgs::Pose2D pose;
             struct Steering {
@@ -15,6 +16,23 @@ namespace SteerBot{
 
         }RobotState;
        
+=======
+        typedef struct {
+            struct Coord{
+                float x, y;
+            }coord;
+            float yaw; 
+        }RobotPose;
+
+        typedef struct{
+            float omega, alpha; // linear speed, wheels angle;
+            struct Published
+            {
+                float linear, angular = 0;
+            }pub_wheels;
+            
+        }Wheels;
+>>>>>>> b45cb02c4b15ab5103ac7fe4cc7e88b829370475
     };
     class Robot{
          private:
@@ -23,10 +41,15 @@ namespace SteerBot{
                 geometry_msgs::Twist msg_vel;
             public:
                 int CurState;
+<<<<<<< HEAD
                 bool setter =false;
                 geometry_msgs::Pose2D ref_pose;
                 Parameters::RobotState cur_state;
                 std::vector<Parameters::RobotState> trajectory;
+=======
+                Parameters::RobotPose pose;
+                Parameters::Wheels wheels;
+>>>>>>> b45cb02c4b15ab5103ac7fe4cc7e88b829370475
                 Robot(ros::NodeHandle *node);
                 void initSubsribers(ros::NodeHandle *node);
                 void initPublishers(ros::NodeHandle *node);
@@ -35,14 +58,18 @@ namespace SteerBot{
                 void odomCallback(const nav_msgs::Odometry::ConstPtr &data);
                 std::string GetCurrentState();
                 void SetVelocity(float req_omega, float req_alpha);
+<<<<<<< HEAD
                 bool PathController(geometry_msgs::Pose2D ref_pose, Parameters::RobotState tmp_cur_state);
                 void GenerateCircle(float radius, float time_step, geometry_msgs::Pose2D init_pose);
                 void TrajectoryFollower();
                 
+=======
+>>>>>>> b45cb02c4b15ab5103ac7fe4cc7e88b829370475
 
     };
 
 };
+<<<<<<< HEAD
 #endif
 /*
 ToDo LIST!
@@ -53,3 +80,6 @@ ToDo LIST!
 4) Connect to distant PC.
 
 */
+=======
+#endif
+>>>>>>> b45cb02c4b15ab5103ac7fe4cc7e88b829370475
