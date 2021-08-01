@@ -58,7 +58,7 @@ Also you can update this [roslaunch file](/gazebo_path_plugin/launch/loadWorldPa
 ![default_gzclient_camera(1)-2021-04-14T20_50_12 611681](https://user-images.githubusercontent.com/49625282/114766896-42a16d80-9d67-11eb-83bd-d9ad24a2b903.jpg)
 2) Full blok C with 10 rows and 140 cars on the parking slots
 ![default_gzclient_camera(1)-2021-05-05T21_59_35 282525](https://user-images.githubusercontent.com/49625282/117245072-7a697580-ae3a-11eb-977d-05a027f742a2.jpg)
-
-
+3) Controller tests
+![1](https://user-images.githubusercontent.com/49625282/127756083-76850260-1ee2-42c3-a75d-d1997ae84e22.jpg)
 
 
