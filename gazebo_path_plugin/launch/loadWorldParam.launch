@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!--Loads parameters from world.yaml file and runs the spawner-->
+<launch>
+
+    <node  pkg="gazebo_path_plugin" type="world_spawner" name="spawn_world_client" output="screen" >
+    <rosparam file="$(find gazebo_path_plugin)/config/world.yaml" /> 
+    </node>
+
+</launch>
