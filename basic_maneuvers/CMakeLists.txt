@@ -12,6 +12,10 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   phoenix_msgs
+<<<<<<< HEAD
+=======
+  geometry_msgs
+>>>>>>> 8a200bd8873c353568386cc66abc309758d39615
 )
 
 ## System dependencies are found with CMake's conventions
@@ -209,6 +213,7 @@ include_directories(
 add_executable(maneuvers src/test.cpp)
 target_link_libraries(maneuvers ${catkin_LIBRARIES})
 <<<<<<< HEAD
+<<<<<<< HEAD
 #add_dependencies(maneuvers basic_maneuvers_generate_messages_cpp)
 =======
 <<<<<<< HEAD
@@ -221,3 +226,6 @@ add_dependencies(maneuvers basic_maneuvers_generate_messages_cpp)
 >>>>>>> b59088bb099eb36023c593af25cdf1a30b284305
 >>>>>>> 18b3948eb19fcdb27e360a638f9886912a2d8ade
 >>>>>>> b45cb02c4b15ab5103ac7fe4cc7e88b829370475
+=======
+#add_dependencies(maneuvers basic_maneuvers_generate_messages_cpp)
+>>>>>>> 8a200bd8873c353568386cc66abc309758d39615

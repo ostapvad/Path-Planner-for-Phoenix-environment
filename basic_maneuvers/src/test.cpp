@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include "maneuvers.cpp"
 
 
@@ -7,10 +8,24 @@ enum TestModes {GoalToGoal, TrajectoryFollower};
 =======
 
 >>>>>>> b45cb02c4b15ab5103ac7fe4cc7e88b829370475
+=======
+#include "robot.hpp"
+
+
+#define SleepRate 10 // 10 Hz
+#define REF_POSE_X 10
+#define REF_POSE_Y 0
+#define REF_POSE_YAW 0 
+
+
+
+enum TestModes {GoalToGoal, TrajectoryFollower, InitManeuver, TestController, TestTurn};
+>>>>>>> 8a200bd8873c353568386cc66abc309758d39615
 
 int main(int argc, char **argv){
     ros::init(argc, argv, "test_maneuvers");
     ros::NodeHandle tester;
+<<<<<<< HEAD
    
     SteerBot:: Robot new_move(&tester);
     ros::Rate loop_rate(SleepRate);
@@ -50,11 +65,51 @@ int main(int argc, char **argv){
     */
     int TestMode = TrajectoryFollower;
     int counter_state = 0;
+=======
+    ros::Rate loop_rate(SleepRate);
+ 
+    int TestMode = InitManeuver;
+    int counter_state = 0;
+
+    
+    Paths::Generator trajectory;
+    SteerBot::Robot robot(&tester);;
+    RobotManeuvers::Maneuvers maneuver;
+
+    while(ros::ok()){
+
+        switch (TestMode)
+        {
+        case GoalToGoal:
+            geometry_msgs::Pose2D ref_pose; ref_pose.x = REF_POSE_X; ref_pose.y = REF_POSE_Y; ref_pose.theta = REF_POSE_YAW;
+            
+            break;
+        
+        case TrajectoryFollower:
+            
+            break;
+        default:
+            break;
+        }
+
+
+        
+        ros::spinOnce();
+        loop_rate.sleep();
+    
+    }   
+   
+
+   
+    /*
+
+>>>>>>> 8a200bd8873c353568386cc66abc309758d39615
     while(ros::ok()){
        
        switch (TestMode)
        {
        case GoalToGoal:
+<<<<<<< HEAD
             new_move.PathController(new_move.ref_pose, new_move.cur_state);
             break;
        case TrajectoryFollower:
@@ -91,6 +146,37 @@ int main(int argc, char **argv){
 
     }
 >>>>>>> b45cb02c4b15ab5103ac7fe4cc7e88b829370475
+=======
+            new_move.PathController(new_move.ref_pose, new_move.cur_state); 
+            break;
+       case TrajectoryFollower:
+                         
+            //printf("(x_goal, y_goal) = (%f, %f), (x_cur, y_cur) = (%f, %f), yaw = %f\n", new_move.trajectory[counter_state].pose.x, new_move.trajectory[counter_state].pose.y,  new_move.cur_state.pose.x,  new_move.cur_state.pose.y, new_move.cur_state.pose.theta); 
+            //counter_state = (new_move.PathController(new_move.trajectory[counter_state].pose, new_move.cur_state))? counter_state+1: counter_state;
+            break;
+       
+       case InitManeuver:
+            new_move.SetVelocity(0,0.5);
+            printf("turn_angle = %f\n", new_move.cur_state.steering.angle);
+            break;
+        
+        case TestController:
+            new_move.NaiveController(new_move.ref_pose, new_move.cur_state); 
+            break;
+        case TestTurn:
+            new_move.TurnAngle(1.57, new_move.cur_state);
+            break;
+       default:
+
+           break;
+       }
+      
+        ros::spinOnce();
+        loop_rate.sleep();
+    }
+    */
+
+>>>>>>> 8a200bd8873c353568386cc66abc309758d39615
 
     
 

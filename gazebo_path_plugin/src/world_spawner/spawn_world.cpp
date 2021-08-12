@@ -22,10 +22,14 @@ int main(int argc, char **argv){
             } 
         
 <<<<<<< HEAD
+<<<<<<< HEAD
         else if ((strcmp(argv[1], "-f") == 0) && (strcmp(argv[2], "-c")==0)){ // -f -c
 =======
         else if ((strcmp(argv[1], "-f") == 0) && (strcmp(argv[2], "-f")==0)){ // -f -c
 >>>>>>> b45cb02c4b15ab5103ac7fe4cc7e88b829370475
+=======
+        else if ((strcmp(argv[1], "-f") == 0) && (strcmp(argv[2], "-c")==0)){ // -f -c
+>>>>>>> 8a200bd8873c353568386cc66abc309758d39615
           
             
             bool clear_world = (argc == 3 && !(strcmp(argv[2], "-c")))?true: false;

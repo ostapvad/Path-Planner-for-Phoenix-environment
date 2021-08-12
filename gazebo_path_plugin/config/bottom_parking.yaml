@@ -3,12 +3,17 @@
 /world_spawner/plane_pose: [0.5, 8.4] 
 /world_spawner/steerbot_road_width: 4
 <<<<<<< HEAD
+<<<<<<< HEAD
 /world_spawner/random_type_spawn: [true, false]
 /world_spawner/random_cars_to_spawn: [5, 5]
 =======
 /world_spawner/random_type_spawn: [false, true]
 /world_spawner/random_cars_to_spawn: [10, 5]
 >>>>>>> b45cb02c4b15ab5103ac7fe4cc7e88b829370475
+=======
+/world_spawner/random_type_spawn: [true, false]
+/world_spawner/random_cars_to_spawn: [5, 5]
+>>>>>>> 8a200bd8873c353568386cc66abc309758d39615
 /world_spawner/random_rectangle_area: [3.5, 5.5, 25, 25]
 /world_spawner/boxes_to_spawn: ['1', '4', '4']
 /world_spawner/boxes_x_pose: [15.75, 14.5, -5]
