@@ -53,7 +53,8 @@ void SteerBot::Robot::SetVelocity(float req_frw_vel, float target_angle){
     this->cmd_vel.publish(msg_vel); 
    
 }
-
+/// n1 + n2 + n3 = 100
+// 
 
 bool SteerBot::Robot::PathController(Parameters::RobotState ref_state, Parameters::RobotState tmp_cur_state){
     float dx = ref_state.pose.x - tmp_cur_state.pose.x;
@@ -84,7 +85,7 @@ bool SteerBot::Robot::PathController(Parameters::RobotState ref_state, Parameter
 
 }
 
-SteerBot::Parameters::RobotState SteerBot::Robot::GenerateCircle(){
+Parameters::RobotState SteerBot::Robot::GenerateCircle(){
     Parameters::RobotState state;
 
     struct  timeval  now;
